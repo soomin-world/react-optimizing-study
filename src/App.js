@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.jsx
 
-function App() {
+import React, { useMemo, useState } from "react";
+import List from "./components/List";
+
+const App = () => {
+  const [value, setValue] = useState("");
+
+  const onChangeHandler = (e) => {
+    setValue(e.target.value);
+  };
+
+  const data = useMemo(() => {
+    return [
+      {
+        id: 1,
+        title: "react",
+      },
+    ];
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <input type="text" value={value} onChange={onChangeHandler} />
+      <List data={data} />
     </div>
   );
-}
+};
 
 export default App;
